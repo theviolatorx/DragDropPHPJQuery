@@ -1,0 +1,40 @@
+body {
+    background: #eee;
+    color: #444;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+.container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.upload-area {
+    background: #fff;
+    border: 2px dashed #777;
+    height: 350px;
+    line-height: 350px;
+    text-align: center;
+}
+
+.upload-area-hover {
+    border-color: #000;
+    color: #000;
+}
+
+#uploaded-files {
+    background: #fff;
+    border: 1px solid #777;
+    width: 100%;
+    min-height: 100px;
+    margin-top: 1rem;
+
+    .image {
+        width: 25%;
+
+    }
+}

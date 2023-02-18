@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="upload-area">
+        Arraste e Solte o arquivo aqui!
+    </div>
+    <div id="uploaded-files"></div>
+</div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.upload-area').on('dragover', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $(this).addClass('upload-area-hover');
+        })
+        $('.upload-area').on('dragleave', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $(this).removeClass('upload-area-hover');
+        })
+        $('.upload-area').on('drop', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $(this).removeClass('upload-area-hover');
+            var data= new FormData();
+            var files = event.originalEvent.dataTransfer.files;
+            for(var i = 0; i<files.length; i++) {
+                data.append('file[]', files[i]);
+            }
+            $.ajax({
+                url:'upload.php',
+                method:'POST',
+                data: data,
+                contentType:false,
+                cache:false,
+                processData:false,
+                success:function(result){
+                    $('#uploaded-files').html(result);
+                }
+
+            })
+        })
+    });
+</script>
+</html>
